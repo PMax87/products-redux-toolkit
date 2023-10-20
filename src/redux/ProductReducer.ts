@@ -1,4 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+
+export interface ProductsApiResponse {
+  prdocuts: Products[];
+}
+
+export interface GetProductsApiResponse {
+  products: Products[];
+}
+
+export interface ProductsState {
+  products: Products[];
+}
 
 export interface Products {
   id: string;
@@ -7,10 +19,6 @@ export interface Products {
   descrpition: string;
   thumbnail: string;
   stock: number;
-}
-
-export interface ProductsState {
-  products: Products[];
 }
 
 const initialState: ProductsState = {

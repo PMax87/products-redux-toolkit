@@ -1,17 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-const url = "https://dummyjson.com/products";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "./redux/ProductReducer";
 import { useEffect } from "react";
 import { RootState } from "./redux/index";
+import { ProductsRepository } from "./utils/ProductsRepository";
 
 const PRova = () => {
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.products.products);
 
   const getProducts = async () => {
-    const res = await axios.get(url);
+    const res = await ProductsRepository.getProducts();
     return res.data.products;
   };
 
@@ -21,9 +20,10 @@ const PRova = () => {
   });
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && data) {
       dispatch(setProducts(data));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   if (isLoading && products) {
