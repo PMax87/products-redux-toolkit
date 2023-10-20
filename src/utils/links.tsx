@@ -15,6 +15,10 @@ interface SocialLinkComponent {
   icon: React.ReactNode;
 }
 
+interface ClassNameForLinkAndSocialComponents {
+  classLink: string;
+}
+
 const links: LinkComponent[] = [
   {
     url: "/",
@@ -23,6 +27,10 @@ const links: LinkComponent[] = [
   {
     url: "/products",
     text: "Products",
+  },
+  {
+    url: "/contact",
+    text: "Contact",
   },
 ];
 
@@ -41,34 +49,65 @@ const socialLink: SocialLinkComponent[] = [
   },
 ];
 
-export const LinksComponent = () => {
+export const LinksComponent = ({
+  classLink,
+}: ClassNameForLinkAndSocialComponents) => {
   return (
-    <ul className="flex gap-5">
-      {links.map((link) => {
-        return (
-          <li key={link.text}>
-            <Link to={link.url}>
-              <p className="text-xl font-medium">{link.text}</p>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <div
+      className={
+        classLink === "navbar"
+          ? "hidden md:block justify-self-center"
+          : "flex flex-col justify-center items-center h-[60vh]"
+      }
+    >
+      <ul className={classLink === "navbar" ? "flex gap-5" : "text-center"}>
+        {links.map((link) => {
+          return (
+            <li
+              key={link.text}
+              className={classLink === "sidebar" ? "[&:nth-child(2)]:my-8" : ""}
+            >
+              <Link to={link.url}>
+                <p
+                  className={
+                    classLink === "navbar"
+                      ? "text-xl font-medium"
+                      : "uppercase text-2xl font-medium"
+                  }
+                >
+                  {link.text}
+                </p>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
-export const SocialComponet = () => {
+export const SocialComponet = ({
+  classLink,
+}: ClassNameForLinkAndSocialComponents) => {
   return (
-    <ul className="flex gap-5">
-      {socialLink.map((link) => {
-        return (
-          <li key={link.url}>
-            <Link to={link.url}>
-              <span>{link.icon}</span>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <div
+      className={
+        classLink === "navbar"
+          ? "hidden md:block justify-self-end"
+          : "flex w-full justify-center"
+      }
+    >
+      <ul className="flex gap-5">
+        {socialLink.map((link) => {
+          return (
+            <li key={link.url}>
+              <Link to={link.url}>
+                <span>{link.icon}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };

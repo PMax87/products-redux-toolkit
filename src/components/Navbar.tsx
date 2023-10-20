@@ -8,7 +8,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const navbarOpen = useSelector(
+  const sidebarOpen = useSelector(
     (state: RootState) => state.navbar.isSidebarOpen
   );
 
@@ -21,50 +21,50 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="h-[60px] shadow-lg px-6 lg:px-10 lg:h-[80px]">
-      <div className="container max-w-screen-xl lg:grid lg:grid-cols-3 items-center h-full flex justify-between">
-        <div className="flex items-center">
+    <nav className="h-[60px] shadow-lg px-6 lg:px-10 md:h-[80px]">
+      <div className="container max-w-screen-xl md:grid grid-cols-3 items-center h-full flex justify-between">
+        <div className="flex gap-5 items-center">
           <img
             src={Logo}
-            className="h-[40px] w-[40px] lg:h-[60px] lg:w-[60px] me-2 lg:me-5"
+            className="h-[40px] w-[40px] lg:h-[60px] lg:w-[60px]"
+            alt="Logo Product Store"
           />
-          <h3 className="text-lg lg:text-xl font-bold capitalize">
+          <h3 className="text-lg lg:text-2xl capitalize font-bold">
             Products store
           </h3>
         </div>
-        <div
-          className={`transition-transform fixed top-0 left-0 h-full w-full z-10 bg-white ${
-            navbarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          <div className="w-[100%] h-[60px] shadow-lg px-6">
-            <div className="w-full h-full flex items-center justify-between">
-              <div className="flex items-center">
-                <img
-                  src={Logo}
-                  className="h-[40px] w-[40px] lg:h-[60px] lg:w-[60px] me-2 lg:me-5"
-                />
-                <h3 className="text-lg lg:text-xl font-bold capitalize">
-                  Products store
-                </h3>
-              </div>
-              <button type="button" onClick={onCloseSidebar}>
-                <AiOutlineClose className="text-3xl" />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="justify-self-center hidden lg:block">
-          <LinksComponent />
-        </div>
-        <div className="justify-self-end hidden lg:block">
-          <SocialComponet />
-        </div>
-        <div className="lg:hidden flex">
+        <LinksComponent classLink={"navbar"} />
+        <SocialComponet classLink={"navbar"} />
+        <div className="md:hidden flex">
           <button type="button" onClick={onOpenSidebar}>
-            <HiOutlineMenuAlt3 className="text-3xl hover:scale-105 transition-all" />
+            <HiOutlineMenuAlt3 className="text-3xl" />
           </button>
         </div>
+      </div>
+      <div
+        className={`transition-transform fixed top-0 left-0 h-full w-full z-10 bg-white ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="h-[60px] shadow-lg px-6">
+          <div className="w-full h-full flex items-center justify-between">
+            <div className="flex gap-5 items-center">
+              <img
+                src={Logo}
+                className="h-[40px] w-[40px] lg:h-[60px] lg:w-[60px]"
+                alt="Logo Product Store"
+              />
+              <h3 className="text-xl md:text-2xl capitalize font-bold">
+                Products store
+              </h3>
+            </div>
+            <button type="button" onClick={onCloseSidebar}>
+              <AiOutlineClose className="text-3xl" />
+            </button>
+          </div>
+        </div>
+        <LinksComponent classLink="sidebar" />
+        <SocialComponet classLink="sidebar" />
       </div>
     </nav>
   );

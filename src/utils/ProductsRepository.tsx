@@ -1,12 +1,15 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { GetProductsApiResponse } from "../redux/ProductReducer";
+import {
+  GetProductsApiResponse,
+  ProductsApiResponse,
+} from "../redux/ProductReducer";
 
 export class ProductsRepository {
-  static getProducts(): Promise<
-    AxiosResponse<{ products: GetProductsApiResponse[] }>
+  static getAllProducts(): Promise<
+    AxiosResponse<{ products: ProductsApiResponse[] }>
   > {
     const request: AxiosRequestConfig = {
-      url: "https://dummyjson.com/products?limit=10&skip=10",
+      url: "https://dummyjson.com/products?limit=0",
       method: "GET",
     };
     return axios.request(request);

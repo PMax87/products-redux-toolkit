@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface ProductsApiResponse {
-  prdocuts: Products[];
+  products: Products[];
 }
 
 export interface GetProductsApiResponse {
@@ -21,6 +21,13 @@ export interface Products {
   stock: number;
 }
 
+export interface FeaturedProducts {
+  id: string;
+  image: string;
+  title: string;
+  description: string;
+}
+
 const initialState: ProductsState = {
   products: [],
 };
@@ -31,6 +38,7 @@ export const productsSlice = createSlice({
   reducers: {
     setProducts: (state, action) => {
       state.products = action.payload;
+      // allPrd.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
     },
   },
 });
