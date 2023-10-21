@@ -18,14 +18,14 @@ const HomePage = () => {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["getAllProducts"],
-    queryFn: getAllProducts,
+    queryFn: () => getAllProducts(),
   });
 
   useEffect(() => {
-    if (!isLoading && products) {
+    if (!isLoading && data !== undefined) {
       dispatch(setProducts(data));
     }
-  }, []);
+  }, [data]);
 
   console.log(products);
 
