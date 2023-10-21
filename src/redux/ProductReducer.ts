@@ -19,6 +19,7 @@ export interface Products {
   descrpition: string;
   thumbnail: string;
   stock: number;
+  rating: number;
 }
 
 export interface FeaturedProducts {
@@ -36,12 +37,11 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts: (state, action: PayloadAction<ProductsState>) => {
-      if (action.payload !== undefined) {
-        state.products = action.payload.products;
-      } else {
-        state.products = [];
-      }
+    setProducts: (state, action: PayloadAction<Products[]>) => {
+      const tempPrd = action.payload !== undefined ? action.payload : [];
+      const sortedProducts = tempPrd.sort((a, b) => b.rating - a.rating);
+      const top3Products = sortedProducts.slice(0, 3);
+      state.products = top3Products;
     },
   },
 });
