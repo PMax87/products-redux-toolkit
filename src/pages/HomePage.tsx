@@ -6,11 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/index";
-import { setProducts } from "../redux/ProductReducer";
+import { set3PopularProducts } from "../redux/ProductReducer";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state: RootState) => state.products.products);
+  const top3Products = useSelector(
+    (state: RootState) => state.products.products
+  );
   const getAllProducts = async () => {
     const res = await ProductsRepository.getAllProducts();
     return res.data.products;
@@ -23,11 +25,11 @@ const HomePage = () => {
 
   useEffect(() => {
     if (!isLoading && data !== undefined) {
-      dispatch(setProducts(data));
+      dispatch(set3PopularProducts(data));
     }
   }, [data]);
 
-  console.log(products);
+  console.log(top3Products);
 
   return (
     <>

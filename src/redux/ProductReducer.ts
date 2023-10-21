@@ -22,13 +22,6 @@ export interface Products {
   rating: number;
 }
 
-export interface FeaturedProducts {
-  id: string;
-  image: string;
-  title: string;
-  description: string;
-}
-
 const initialState: ProductsState = {
   products: [],
 };
@@ -37,7 +30,7 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts: (state, action: PayloadAction<Products[]>) => {
+    set3PopularProducts: (state, action: PayloadAction<Products[]>) => {
       const tempPrd = action.payload !== undefined ? action.payload : [];
       const sortedProducts = tempPrd.sort((a, b) => b.rating - a.rating);
       const top3Products = sortedProducts.slice(0, 3);
@@ -46,5 +39,5 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { setProducts } = productsSlice.actions;
+export const { set3PopularProducts } = productsSlice.actions;
 export default productsSlice.reducer;
