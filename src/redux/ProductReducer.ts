@@ -9,13 +9,13 @@ export interface GetProductsApiResponse {
 }
 
 export interface ProductsState {
-  products?: Products[];
+  products: Products[];
 }
 
 export interface Products {
   id: string;
   title: string;
-  price: string;
+  price: number;
   descrpition: string;
   thumbnail: string;
   stock: number;

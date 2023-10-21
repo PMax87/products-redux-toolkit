@@ -5,6 +5,11 @@ export default {
     container: {
       center: true,
     },
+    extend: {
+      fontSize: {
+        'custom-lg': "1rem"
+      }
+    }
   },
   plugins: [],
 };
