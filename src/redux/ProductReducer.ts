@@ -1,15 +1,15 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface ProductsApiResponse {
-  products: Products[];
+  products?: Products[];
 }
 
 export interface GetProductsApiResponse {
-  products: Products[];
+  products?: Products[];
 }
 
 export interface ProductsState {
-  products: Products[];
+  products?: Products[];
 }
 
 export interface Products {
@@ -36,9 +36,12 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts: (state, action) => {
-      state.products = action.payload;
-      // allPrd.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+    setProducts: (state, action: PayloadAction<ProductsState>) => {
+      if (action.payload !== undefined) {
+        state.products = action.payload.products;
+      } else {
+        state.products = [];
+      }
     },
   },
 });

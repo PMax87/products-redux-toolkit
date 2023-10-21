@@ -22,7 +22,7 @@ const HomePage = () => {
   });
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && products) {
       dispatch(setProducts(data));
     }
   }, []);
