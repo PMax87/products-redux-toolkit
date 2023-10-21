@@ -9,7 +9,10 @@ interface Product {
 const SingleProductCard: React.FC<Product> = ({ product }) => {
   return (
     <article>
-      <img src={product.thumbnail} className="h-56 w-96 object-cover rounded" />
+      <img
+        src={product.thumbnail}
+        className="h-56 w-96 object-cover rounded relative"
+      />
       <div className="flex justify-between mt-3 text-custom-lg">
         <p className="capitalize">{product.title}</p>
         <p className="text-amber-800">{formatPrice(product.price)}</p>

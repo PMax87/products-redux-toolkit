@@ -18,7 +18,7 @@ const HomePage = () => {
     return res.data.products;
   };
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["getAllProducts"],
     queryFn: () => getAllProducts(),
   });
@@ -55,10 +55,8 @@ const HomePage = () => {
           isLoading ? "h-[40vh]" : ""
         }`}
       >
-        <div className="container max-w-screen-xl ">
-          <h3 className="text-4xl font-bold text-center pt-10">
-            Featured Products
-          </h3>
+        <div className="container max-w-screen-xl py-10">
+          <h3 className="text-4xl font-bold text-center">Featured Products</h3>
           {isLoading ? (
             <div role="status" className="absolute w-full h-full top-0 left-0">
               <div className="top-1/2 absolute left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -89,9 +87,15 @@ const HomePage = () => {
                     <SingleProductCard key={product.id} product={product} />
                   );
                 })}
-              <Link to="/products">Tutti i prodotti</Link>
             </div>
           )}
+          <div className="flex justify-center mt-7">
+            <Link to="/products" className="block">
+              <span className="bg-sky-500 text-lg hover:bg-blue-700 text-white py-2 px-5 rounded transition-colors">
+                Tutti i prodotti
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </>
