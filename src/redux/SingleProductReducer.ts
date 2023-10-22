@@ -39,15 +39,16 @@ export const singleProductSlice = createSlice({
   initialState,
   reducers: {
     setSingleProduct: (state, action: PayloadAction<SingleProduct>) => {
-      (state.singleProduct.id = action.payload.id),
-        (state.singleProduct.title = action.payload.title),
-        (state.singleProduct.price = action.payload.price),
-        (state.singleProduct.description = action.payload.description);
-      (state.singleProduct.thumbnail = action.payload.thumbnail),
-        (state.singleProduct.images = action.payload.images),
-        (state.singleProduct.category = action.payload.category);
-      (state.singleProduct.rating = action.payload.rating),
-        (state.singleProduct.stock = action.payload.stock);
+      state.singleProduct = { ...action.payload };
+      //   (state.singleProduct.id = action.payload.id),
+      //     (state.singleProduct.title = action.payload.title),
+      //     (state.singleProduct.price = action.payload.price),
+      //     (state.singleProduct.description = action.payload.description);
+      //   (state.singleProduct.thumbnail = action.payload.thumbnail),
+      //     (state.singleProduct.images = action.payload.images),
+      //     (state.singleProduct.category = action.payload.category);
+      //   (state.singleProduct.rating = action.payload.rating),
+      //     (state.singleProduct.stock = action.payload.stock);
     },
   },
 });

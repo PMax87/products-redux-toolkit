@@ -35,6 +35,8 @@ const SingleProductPage = () => {
     }
   }, [data]);
 
+  console.log(singleProduct);
+
   return (
     <div>
       {!isLoading && data ? (
