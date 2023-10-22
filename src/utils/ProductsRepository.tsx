@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { GetProductsApiResponse } from "../redux/ProductsReducer";
+import { SingleProduct } from "../redux/SingleProductReducer";
 
 export class ProductsRepository {
   static getAllProducts(): Promise<AxiosResponse<GetProductsApiResponse>> {
@@ -9,13 +10,11 @@ export class ProductsRepository {
     };
     return axios.request(request);
   }
-  // static getProductById(
-  //   id: string
-  // ): Promise<AxiosResponse<GetProductApiResponse>> {
-  //   const request: AxiosRequestConfig = {
-  //     url: `https://dummyjson.com/products/${id}`,
-  //     method: "GET",
-  //   };
-  //   return axios.request(request);
-  // }
+  static getProductById(id: string): Promise<AxiosResponse<SingleProduct>> {
+    const request: AxiosRequestConfig = {
+      url: `https://dummyjson.com/products/${id}`,
+      method: "GET",
+    };
+    return axios.request(request);
+  }
 }

@@ -5,6 +5,7 @@ import { ProductsRepository } from "../utils/ProductsRepository";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux";
+import { setSingleProduct } from "../redux/SingleProductReducer";
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const SingleProductPage = () => {
   };
 
   const singleProduct = useSelector(
-    (state: RootState) => state.products.products
+    (state: RootState) => state.singleProducts.singleProduct
   );
 
   const { data, isLoading, error } = useQuery({
@@ -28,9 +29,21 @@ const SingleProductPage = () => {
     },
   });
 
-  console.log(data);
+  useEffect(() => {
+    if (!isLoading && data !== undefined) {
+      dispatch(setSingleProduct(data));
+    }
+  }, [data]);
 
-  return <div></div>;
+  return (
+    <div>
+      {!isLoading && data ? (
+        <BannerTitle title={singleProduct.title} />
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+  );
 };
 
 export default SingleProductPage;
