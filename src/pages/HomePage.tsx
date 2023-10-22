@@ -80,7 +80,7 @@ const HomePage = () => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-3 py-12 gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 py-12 gap-16">
               {data &&
                 top3Products.map((product) => {
                   return (
