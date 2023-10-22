@@ -6,7 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/index";
-import { set3PopularProducts } from "../redux/ProductReducer";
+import { set3PopularProducts } from "../redux/ProductsReducer";
+import { Card } from "../utils/homeContactPageCards";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const HomePage = () => {
           isLoading ? "h-[40vh]" : ""
         }`}
       >
-        <div className="container max-w-screen-xl py-10">
+        <div className="container max-w-screen-xl py-20">
           <h3 className="text-4xl font-bold text-center">Featured Products</h3>
           {isLoading ? (
             <div role="status" className="absolute w-full h-full top-0 left-0">
@@ -96,6 +97,11 @@ const HomePage = () => {
               </span>
             </Link>
           </div>
+        </div>
+      </div>
+      <div className="w-full px-6 bg-yellow-800/50">
+        <div className="container max-w-screen-xl py-20">
+          <Card />
         </div>
       </div>
     </>

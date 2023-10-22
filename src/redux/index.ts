@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ProductReducer from "./ProductReducer";
+import ProductReducer from "./ProductsReducer";
 import NavbarReducer from "./NavbarReducer";
 export const store = configureStore({
   reducer: {
