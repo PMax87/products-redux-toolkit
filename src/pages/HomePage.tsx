@@ -43,7 +43,7 @@ const HomePage = () => {
             sequi distinctio! Veniam, labore corrupti?
           </p>
           <Link to="/prodcuts" className="mt-10 block">
-            <span className="bg-sky-500 text-lg hover:bg-blue-700 text-white font-bold py-4 px-10 rounded transition-colors">
+            <span className="bg-sky-500 text-lg hover:bg-blue-700 text-white font-semibold py-2 px-5 lg:py-4 lg:px-10 rounded transition-colors">
               Shop now
             </span>
           </Link>
