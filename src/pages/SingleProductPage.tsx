@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { BannerTitle } from "../components";
+import { BannerTitle, SingleProductCarouselImage } from "../components";
 import { ProductsRepository } from "../utils/ProductsRepository";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,14 +33,17 @@ const SingleProductPage = () => {
     if (!isLoading && data !== undefined) {
       dispatch(setSingleProduct(data));
     }
-  }, [data]);
-
-  console.log(singleProduct);
+  }, [data, isLoading]);
 
   return (
     <div>
       {!isLoading && data ? (
-        <BannerTitle title={singleProduct.title} />
+        <>
+          <BannerTitle title={singleProduct.title} />
+          <div>
+            <SingleProductCarouselImage images={singleProduct.images} />
+          </div>
+        </>
       ) : (
         <div>Loading...</div>
       )}
