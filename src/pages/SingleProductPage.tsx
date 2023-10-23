@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux";
 import { setSingleProduct } from "../redux/SingleProductReducer";
 import { formatPrice } from "../utils/FormatPrice";
+import { starGenerator } from "../utils/StarGenerator";
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -54,7 +55,7 @@ const SingleProductPage = () => {
                 />
                 <div className="flex flex-col">
                   <h3>{singleProduct.title}</h3>
-                  <p>{singleProduct.rating}</p>
+                  <p>{starGenerator(singleProduct.rating)}</p>
                   <p>{formatPrice(singleProduct.price)}</p>
                   <h3>{singleProduct.description}</h3>
                 </div>

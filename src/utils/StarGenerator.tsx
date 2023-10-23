@@ -1,9 +1,15 @@
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
-const rate = 4.5;
-
 export const starGenerator = (rating: number) => {
-  console.log(rating);
+  const star = [];
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      star.push(<BsStarFill key={i} />);
+    } else if (i - 0.5 === rating) {
+      star.push(<BsStarHalf key={i} />);
+    } else {
+      star.push(<BsStar key={i} />);
+    }
+  }
+  return star;
 };
-
-starGenerator(rate);
