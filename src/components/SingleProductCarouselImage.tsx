@@ -20,7 +20,7 @@ const SingleProductCarouselImage: React.FC<Images> = ({ images, title }) => {
         <img
           src={selectedImage}
           alt={title}
-          className="rounded h-[500px] w-[500px] object-cover"
+          className="rounded h-[500px] w-[500px] object-cover outline outline-offset-2 outline-2 outline-slate-500"
         />
       )}
       <div className="flex flex-wrap gap-5 mt-10 w-full">
@@ -29,7 +29,7 @@ const SingleProductCarouselImage: React.FC<Images> = ({ images, title }) => {
             <img
               className={`rounded h-[80px] w-[80px] object-cover cursor-pointer ${
                 selectedImage === images[index]
-                  ? "outline outline-offset-2 outline-2 outline-pink-500"
+                  ? "outline outline-offset-2 outline-2 outline-slate-500"
                   : ""
               } `}
               key={index}
