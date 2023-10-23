@@ -48,13 +48,13 @@ const SingleProductPage = () => {
           <BannerTitle title={singleProduct.title} />
           <div className="w-full px-6">
             <div className="container max-w-screen-xl">
-              <div className="grid grid-cols-2 my-7">
+              <div className="grid grid-cols-2 my-20 gap-20">
                 <SingleProductCarouselImage
                   images={singleProduct.images}
                   title={singleProduct.title}
                 />
                 <div className="flex flex-col justify-center">
-                  <h3 className="text-3xl font-bold">{singleProduct.title}</h3>
+                  <h3 className="text-4xl font-bold">{singleProduct.title}</h3>
                   <div className="flex text-lg mt-3 mb-2 gap-1">
                     {starGenerator(singleProduct.rating)}
                   </div>

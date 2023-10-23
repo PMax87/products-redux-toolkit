@@ -15,7 +15,7 @@ const SingleProductCarouselImage: React.FC<Images> = ({ images, title }) => {
   }, [images]);
 
   return (
-    <div>
+    <div className="place-self-center">
       {selectedImage && (
         <img
           src={selectedImage}
@@ -23,7 +23,7 @@ const SingleProductCarouselImage: React.FC<Images> = ({ images, title }) => {
           className="rounded h-[500px] w-[500px] object-cover"
         />
       )}
-      <div className="flex flex-wrap gap-5 mt-10 w-3/4">
+      <div className="flex flex-wrap gap-5 mt-10 w-full">
         {images.map((image, index) => {
           return (
             <img
