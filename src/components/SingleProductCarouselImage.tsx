@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { starGenerator } from "../utils/StarGenerator";
 
 interface Images {
   images: string[];
@@ -14,8 +13,6 @@ const SingleProductCarouselImage: React.FC<Images> = ({ images, title }) => {
       setSelectedImage(images[0]);
     }
   }, [images]);
-
-  starGenerator;
 
   return (
     <div>

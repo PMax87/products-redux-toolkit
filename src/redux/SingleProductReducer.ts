@@ -18,6 +18,7 @@ export interface SingleProduct {
   category: string;
   rating: number;
   stock: number;
+  brand: string;
 }
 
 const initialState: SingleProductState = {
@@ -31,6 +32,7 @@ const initialState: SingleProductState = {
     category: "",
     rating: 0,
     stock: 0,
+    brand: "",
   },
 };
 

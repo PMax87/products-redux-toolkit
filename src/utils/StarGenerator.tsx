@@ -1,17 +1,13 @@
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
-export const starGenerator = (rating: number) => {
-  console.log(rating);
-
-  const star = [];
-  for (let i = 1; i <= 5; i++) {
-    if (i <= rating) {
-      star.push(<BsStarFill key={i} className="text-yellow-400" />);
-    } else if (i - 0.5 <= rating) {
-      star.push(<BsStarHalf key={i} className="text-yellow-400" />);
+export const starGenerator = (rating: number): JSX.Element[] => {
+  return Array.from({ length: 5 }, (_, i) => {
+    if (rating > i + 1) {
+      return <BsStarFill key={i} className="text-yellow-500" />;
+    } else if (rating >= i + 0.5) {
+      return <BsStarHalf key={i} className="text-yellow-500" />;
     } else {
-      star.push(<BsStar key={i} className="text-yellow-400" />);
+      return <BsStar key={i} className="text-yellow-500" />;
     }
-  }
-  return star;
+  });
 };

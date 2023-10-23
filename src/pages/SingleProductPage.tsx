@@ -53,11 +53,29 @@ const SingleProductPage = () => {
                   images={singleProduct.images}
                   title={singleProduct.title}
                 />
-                <div className="flex flex-col">
-                  <h3>{singleProduct.title}</h3>
-                  <p>{starGenerator(singleProduct.rating)}</p>
-                  <p>{formatPrice(singleProduct.price)}</p>
-                  <h3>{singleProduct.description}</h3>
+                <div className="flex flex-col justify-center">
+                  <h3 className="text-3xl font-bold">{singleProduct.title}</h3>
+                  <div className="flex text-lg mt-3 mb-2 gap-1">
+                    {starGenerator(singleProduct.rating)}
+                  </div>
+                  <p className="text-xl font-bold text-amber-800">
+                    {formatPrice(singleProduct.price)}
+                  </p>
+                  <p className="w-3/4 mt-5 leading-relaxed">
+                    {singleProduct.description}
+                  </p>
+                  <p className="capitalize mt-5">
+                    <span className="font-bold">Category:</span>{" "}
+                    {singleProduct.category}
+                  </p>
+                  <p className="capitalize mt-5">
+                    <span className="font-bold">Brand:</span>{" "}
+                    {singleProduct.brand}
+                  </p>
+                  <p className="capitalize mt-5">
+                    <span className="font-bold">In stock:</span>{" "}
+                    {singleProduct.stock}
+                  </p>
                 </div>
               </div>
             </div>

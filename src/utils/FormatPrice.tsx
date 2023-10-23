@@ -1,7 +1,10 @@
-export const formatPrice = (price: number) => {
-  const formattedPrice = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "EUR",
-  }).format(price);
-  return formattedPrice;
+export const formatPrice = (price: number): string => {
+  if (price && !isNaN(price)) {
+    const formattedPrice = new Intl.NumberFormat("it-IT", {
+      style: "currency",
+      currency: "EUR",
+    }).format(price);
+    return formattedPrice;
+  }
+  return "Errore nel calcolo del prezzo";
 };
