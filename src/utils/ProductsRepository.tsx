@@ -17,4 +17,11 @@ export class ProductsRepository {
     };
     return axios.request(request);
   }
+  static getProductsPerPage(skip: number): Promise<AxiosRequestConfig<GetProductsApiResponse>> {
+    const request: AxiosRequestConfig = {
+      url: `https://dummyjson.com/products?limit=10&skip=${skip}`,
+      method: "GET",
+    }
+    return axios.request(request)
+  } 
 }
