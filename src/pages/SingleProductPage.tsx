@@ -1,6 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { BannerTitle, SingleProductCarouselImage } from "../components";
+import {
+  BannerTitle,
+  Loading,
+  SingleProductCarouselImage,
+} from "../components";
 import { ProductsRepository } from "../utils/ProductsRepository";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,32 +24,42 @@ const SingleProductPage = () => {
     (state: RootState) => state.singleProducts.singleProduct
   );
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["getProductById"],
     queryFn: () => {
       if (id !== undefined) {
         return getPrdById(id);
       }
     },
+    staleTime: 0,
   });
 
   useEffect(() => {
-    if (!isLoading && data !== undefined) {
+    if (!isFetching && data !== undefined) {
       dispatch(setSingleProduct(data));
     }
-  }, [data, isLoading]);
+  }, [data, dispatch, id, isFetching]);
 
   return (
     <div>
-      {!isLoading && data ? (
+      {!isFetching && data ? (
         <>
           <BannerTitle title={singleProduct.title} />
-          <div>
-            <SingleProductCarouselImage images={singleProduct.images} />
+          <div className="w-full px-6">
+            <div className="container max-w-screen-xl">
+              <div className="grid grid-cols-2">
+                <SingleProductCarouselImage
+                  images={singleProduct.images}
+                  title={singleProduct.title}
+                />
+              </div>
+            </div>
           </div>
         </>
       ) : (
-        <div>Loading...</div>
+        <div>
+          <Loading />
+        </div>
       )}
     </div>
   );

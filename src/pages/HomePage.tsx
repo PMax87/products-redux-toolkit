@@ -19,16 +19,17 @@ const HomePage = () => {
     return res.data.products;
   };
 
-  const { data, isLoading } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["getAllProducts"],
-    queryFn: () => getAllProducts(),
+    queryFn: getAllProducts,
+    staleTime: 0,
   });
 
   useEffect(() => {
-    if (!isLoading && data !== undefined) {
+    if (!isFetching && data !== undefined) {
       dispatch(set3PopularProducts(data));
     }
-  }, [data]);
+  }, [data, isFetching, dispatch]);
 
   return (
     <>
@@ -53,12 +54,12 @@ const HomePage = () => {
       </Hero>
       <div
         className={`w-full px-6 bg-slate-200 relative ${
-          isLoading ? "h-[40vh]" : ""
+          isFetching ? "h-[40vh]" : ""
         }`}
       >
         <div className="container max-w-screen-xl py-20">
           <h3 className="text-4xl font-bold text-center">Featured Products</h3>
-          {isLoading ? (
+          {isFetching ? (
             <div role="status" className="absolute w-full h-full top-0 left-0">
               <div className="top-1/2 absolute left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <svg

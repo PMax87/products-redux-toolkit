@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import SingleProductPage from "../pages/SingleProductPage";
 import BannerTitle from "./BannerTitle";
 import SingleProductCarouselImage from "./SingleProductCarouselImage";
+import Loading from "./Loading";
 
 export {
   Navbar,
@@ -14,4 +15,5 @@ export {
   SingleProductPage,
   BannerTitle,
   SingleProductCarouselImage,
+  Loading,
 };

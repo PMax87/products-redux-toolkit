@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Products } from "../redux/ProductsReducer";
 import { formatPrice } from "../utils/FormatPrice";
 import { FiSearch } from "react-icons/fi";
@@ -12,6 +12,7 @@ const SingleProductCard: React.FC<Product> = ({ product }) => {
   const navigate = useNavigate();
 
   const onViewSingleProduct = (id: string) => {
+    window.scrollTo(0, 0);
     navigate(`/product/${id}`);
   };
 
