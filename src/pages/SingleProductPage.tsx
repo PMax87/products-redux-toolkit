@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux";
 import { setSingleProduct } from "../redux/SingleProductReducer";
+import { formatPrice } from "../utils/FormatPrice";
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -31,7 +32,6 @@ const SingleProductPage = () => {
         return getPrdById(id);
       }
     },
-    staleTime: 0,
   });
 
   useEffect(() => {
@@ -47,11 +47,17 @@ const SingleProductPage = () => {
           <BannerTitle title={singleProduct.title} />
           <div className="w-full px-6">
             <div className="container max-w-screen-xl">
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 my-7">
                 <SingleProductCarouselImage
                   images={singleProduct.images}
                   title={singleProduct.title}
                 />
+                <div className="flex flex-col">
+                  <h3>{singleProduct.title}</h3>
+                  <p>{singleProduct.rating}</p>
+                  <p>{formatPrice(singleProduct.price)}</p>
+                  <h3>{singleProduct.description}</h3>
+                </div>
               </div>
             </div>
           </div>
