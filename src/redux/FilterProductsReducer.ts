@@ -9,16 +9,16 @@ export interface GetDataFromApi {
 }
 
 export interface GetCategoriesFromApi {
-  data: string[];
+  data: Categories;
 }
 
 export interface Categories {
-  data: string;
+  data: string[];
 }
 
 export interface ProductsFilterState {
   products: Products[];
-  categories: string[];
+  categories: Categories[];
   category: string;
   skip: number;
   total: number;
@@ -60,7 +60,7 @@ export const productsFilterSlice = createSlice({
     setCategories: (state, action: PayloadAction<string[]>) => {
       console.log(action.payload);
       const tempCategories = action.payload !== undefined ? action.payload : [];
-      state.data = tempCategories;
+      state.categories = tempCategories;
     },
     setChangeCategory: (state, action) => {
       console.log(action.payload);
