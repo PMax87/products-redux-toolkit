@@ -7,6 +7,7 @@ import { RootState } from "../redux/index";
 import {
   changeLimitNumber,
   changeSkipNumber,
+  setCategories,
   setProductsByPage,
   setTotalProducts,
 } from "../redux/FilterProductsReducer";
@@ -25,12 +26,29 @@ const ProductsPage = () => {
   const limitNumber = useSelector(
     (state: RootState) => state.filterProducts.limit
   );
+  const categoryOfAProducts = useSelector(
+    (state: RootState) => state.filterProducts.category
+  );
+  const allCategories = useSelector(
+    (state: RootState) => state.filterProducts.categories
+  );
 
   const getProductsByPage = async () => {
     const res = await ProductsRepository.getProductsPerPage(
       skipProducts,
       limitNumber
     );
+    return res.data;
+  };
+
+  const getCategories = async () => {
+    const res = await ProductsRepository.getCategories();
+    console.log(res);
+    return res.data;
+  };
+
+  const getProductsOfACategory = async (category: string) => {
+    const res = await ProductsRepository.getProductsOfACategory(category);
     return res.data;
   };
 
@@ -41,6 +59,19 @@ const ProductsPage = () => {
   const { data, isFetching } = useQuery({
     queryKey: ["getPrdByPage", skipProducts, limitNumber],
     queryFn: getProductsByPage,
+  });
+
+  const { data: allCategory, isFetching: isFetchingCategory } = useQuery({
+    queryKey: ["getAllCategory"],
+    queryFn: getCategories,
+  });
+
+  const {
+    data: allProductsOfACategory,
+    isFetching: isFetchingAllProductsOfACategory,
+  } = useQuery({
+    queryKey: ["getAllProductsOfACategory"],
+    queryFn: () => getProductsOfACategory("smartphones"),
   });
 
   const onChangeSkipNumber = (skipNumber: number) => {
@@ -64,7 +95,19 @@ const ProductsPage = () => {
       dispatch(setProductsByPage(data.products));
       dispatch(setTotalProducts(data.total));
     }
-  }, [data, isFetching, dispatch, skipProducts, products, limitNumber]);
+    if (!isFetchingCategory && allCategory) {
+      dispatch(setCategories(allCategory));
+    }
+  }, [
+    data,
+    isFetching,
+    dispatch,
+    skipProducts,
+    products,
+    limitNumber,
+    allCategory,
+    isFetchingCategory,
+  ]);
 
   return (
     <>
@@ -87,6 +130,11 @@ const ProductsPage = () => {
             10
           </option>
           <option value="20">20</option>
+        </select>
+        <select>
+          {allCategories.map((category) => (
+            <option>{category}</option>
+          ))}
         </select>
       </div>
     </>

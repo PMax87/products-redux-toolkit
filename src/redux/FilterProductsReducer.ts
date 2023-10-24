@@ -8,8 +8,18 @@ export interface GetDataFromApi {
   total: number;
 }
 
+export interface GetCategoriesFromApi {
+  data: string[];
+}
+
+export interface Categories {
+  data: string;
+}
+
 export interface ProductsFilterState {
   products: Products[];
+  categories: string[];
+  category: string;
   skip: number;
   total: number;
   limit: number;
@@ -20,6 +30,8 @@ export interface ProductsFilterState {
 
 const initialState: ProductsFilterState = {
   products: [],
+  categories: [],
+  category: "all",
   skip: 0,
   total: 0,
   limit: 10,
@@ -43,8 +55,15 @@ export const productsFilterSlice = createSlice({
       state.products = products;
     },
     setTotalProducts: (state, action: PayloadAction<number>) => {
-      console.log(action.payload);
       state.total = action.payload;
+    },
+    setCategories: (state, action: PayloadAction<string[]>) => {
+      console.log(action.payload);
+      const tempCategories = action.payload !== undefined ? action.payload : [];
+      state.data = tempCategories;
+    },
+    setChangeCategory: (state, action) => {
+      console.log(action.payload);
     },
   },
 });
@@ -54,5 +73,7 @@ export const {
   setProductsByPage,
   changeLimitNumber,
   setTotalProducts,
+  setCategories,
+  setChangeCategory,
 } = productsFilterSlice.actions;
 export default productsFilterSlice.reducer;
