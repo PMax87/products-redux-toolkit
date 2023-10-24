@@ -15,7 +15,7 @@ const SingleProductCarouselImage: React.FC<Images> = ({ images, title }) => {
   }, [images]);
 
   return (
-    <div className="place-self-center">
+    <div className="">
       {selectedImage && (
         <img
           src={selectedImage}

@@ -6,7 +6,7 @@ interface Title {
 
 const BannerTitle: React.FC<Title> = ({ title }) => {
   return (
-    <div className="w-full px-6 bg-yellow-800/50">
+    <div className="w-full px-6 bg-[#eaded7]">
       <div className="container max-w-screen-xl py-20">
         <div className="flex text-3xl">
           <Link to="/">Home</Link>
