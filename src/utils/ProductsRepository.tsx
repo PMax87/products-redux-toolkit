@@ -1,10 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { GetProductsApiResponse } from "../redux/ProductsReducer";
 import { SingleProduct } from "../redux/SingleProductReducer";
-import {
-  GetCategoriesFromApi,
-  GetDataFromApi,
-} from "../redux/FilterProductsReducer";
+import { GetDataFromApi } from "../redux/FilterProductsReducer";
 
 export class ProductsRepository {
   static getAllProducts(): Promise<AxiosResponse<GetProductsApiResponse>> {

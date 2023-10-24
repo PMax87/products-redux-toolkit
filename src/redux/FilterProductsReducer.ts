@@ -23,7 +23,7 @@ export interface ProductsFilterState {
 const initialState: ProductsFilterState = {
   products: [],
   categories: [],
-  category: "all",
+  category: "smartphones",
   skip: 0,
   total: 0,
   limit: 10,
@@ -52,10 +52,18 @@ export const productsFilterSlice = createSlice({
     setCategories: (state, action: PayloadAction<string[]>) => {
       console.log(action.payload);
       const tempCategories = action.payload !== undefined ? action.payload : [];
-      state.categories = tempCategories;
+      state.categories = ["all", ...tempCategories];
     },
-    setChangeCategory: (state, action) => {
-      console.log(action.payload);
+    setChangeCategory: (state, action: PayloadAction<string>) => {
+      state.category = action.payload;
+      const products = state.products.filter(
+        (product) => product.category === action.payload
+      );
+      state.products = products;
+    },
+    setProductsOfACategory: (state, action: PayloadAction<Products[]>) => {
+      const products = action.payload !== undefined ? action.payload : [];
+      state.products = products;
     },
   },
 });
@@ -67,5 +75,6 @@ export const {
   setTotalProducts,
   setCategories,
   setChangeCategory,
+  setProductsOfACategory,
 } = productsFilterSlice.actions;
 export default productsFilterSlice.reducer;

@@ -8,7 +8,9 @@ import {
   changeLimitNumber,
   changeSkipNumber,
   setCategories,
+  setChangeCategory,
   setProductsByPage,
+  setProductsOfACategory,
   setTotalProducts,
 } from "../redux/FilterProductsReducer";
 
@@ -29,6 +31,9 @@ const ProductsPage = () => {
   const categoryOfAProducts = useSelector(
     (state: RootState) => state.filterProducts.category
   );
+
+  console.log(categoryOfAProducts);
+
   const allCategories = useSelector(
     (state: RootState) => state.filterProducts.categories
   );
@@ -43,13 +48,13 @@ const ProductsPage = () => {
 
   const getCategories = async () => {
     const res = await ProductsRepository.getCategories();
-    console.log(res);
     return res.data;
   };
 
   const getProductsOfACategory = async (category: string) => {
     const res = await ProductsRepository.getProductsOfACategory(category);
-    return res;
+    console.log(res.data);
+    return res.data;
   };
 
   const totalPage = totalProducts / limitNumber;
@@ -62,7 +67,7 @@ const ProductsPage = () => {
   });
 
   const { data: allCategory, isFetching: isFetchingAllCategory } = useQuery({
-    queryKey: ["getAllCategory"],
+    queryKey: ["getAllCategory", categoryOfAProducts],
     queryFn: getCategories,
   });
 
@@ -71,7 +76,7 @@ const ProductsPage = () => {
     isFetching: isFetchingAllProductsOfACategory,
   } = useQuery({
     queryKey: ["getAllProductsOfACategory"],
-    queryFn: () => getProductsOfACategory("smartphones"),
+    queryFn: () => getProductsOfACategory(categoryOfAProducts),
   });
 
   const onChangeSkipNumber = (skipNumber: number) => {
@@ -88,6 +93,11 @@ const ProductsPage = () => {
   const onChangeLimitNumber = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value);
     dispatch(changeLimitNumber(value));
+  };
+
+  const onChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    dispatch(setChangeCategory(value));
   };
 
   useEffect(() => {
@@ -107,6 +117,7 @@ const ProductsPage = () => {
     limitNumber,
     allCategory,
     isFetchingAllCategory,
+    categoryOfAProducts,
   ]);
 
   return (
@@ -131,7 +142,7 @@ const ProductsPage = () => {
           </option>
           <option value="20">20</option>
         </select>
-        <select>
+        <select onChange={(e) => onChangeCategory(e)}>
           {allCategories.map((category) => (
             <option>{category}</option>
           ))}

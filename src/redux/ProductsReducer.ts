@@ -20,6 +20,7 @@ export interface Products {
   thumbnail: string;
   stock: number;
   rating: number;
+  category: string;
 }
 
 const initialState: ProductsState = {
