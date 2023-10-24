@@ -8,17 +8,13 @@ export interface GetDataFromApi {
   total: number;
 }
 
-export interface GetCategoriesFromApi {
-  data: Categories;
-}
-
-export interface Categories {
+export interface CategoriesApiResponse {
   data: string[];
 }
 
 export interface ProductsFilterState {
   products: Products[];
-  categories: Categories[];
+  categories: string[];
   category: string;
   skip: number;
   total: number;

@@ -61,7 +61,7 @@ const ProductsPage = () => {
     queryFn: getProductsByPage,
   });
 
-  const { data: allCategory, isFetching: isFetchingCategory } = useQuery({
+  const { data: allCategory, isFetching: isFetchingAllCategory } = useQuery({
     queryKey: ["getAllCategory"],
     queryFn: getCategories,
   });
@@ -95,7 +95,7 @@ const ProductsPage = () => {
       dispatch(setProductsByPage(data.products));
       dispatch(setTotalProducts(data.total));
     }
-    if (!isFetchingCategory && allCategory) {
+    if (!isFetchingAllCategory && allCategory) {
       dispatch(setCategories(allCategory));
     }
   }, [
@@ -106,7 +106,7 @@ const ProductsPage = () => {
     products,
     limitNumber,
     allCategory,
-    isFetchingCategory,
+    isFetchingAllCategory,
   ]);
 
   return (
