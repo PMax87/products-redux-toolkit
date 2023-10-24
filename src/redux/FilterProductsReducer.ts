@@ -1,17 +1,30 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Products } from "./ProductsReducer";
 
+export interface GetDataFromApi {
+  products: Products[];
+  skip: number;
+  limit: number;
+  total: number;
+}
+
 export interface ProductsFilterState {
   products: Products[];
+  skip: number;
+  total: number;
+  limit: number;
   filters: {
-    skipNumberForPage: number;
+    setGridView: boolean;
   };
 }
 
 const initialState: ProductsFilterState = {
   products: [],
+  skip: 0,
+  total: 0,
+  limit: 0,
   filters: {
-    skipNumberForPage: 0,
+    setGridView: false,
   },
 };
 
@@ -20,14 +33,15 @@ export const productsFilterSlice = createSlice({
   initialState,
   reducers: {
     onChangeSkipNumber: (state, action: PayloadAction<number>) => {
-      state.filters.skipNumberForPage = action.payload;
+      state.skip = action.payload;
     },
-    setProductsByPage: (state, action: PayloadAction<Products[]>) => {
-        const products = action.payload !== undefined ? action.payload : []
-        state.products = products
-    }
+    setProductsByPage: (state, action) => {
+      const products = action.payload !== undefined ? action.payload : [];
+      state.products = products;
+    },
   },
 });
 
-export const { onChangeSkipNumber, setProductsByPage } = productsFilterSlice.actions;
+export const { onChangeSkipNumber, setProductsByPage } =
+  productsFilterSlice.actions;
 export default productsFilterSlice.reducer;
