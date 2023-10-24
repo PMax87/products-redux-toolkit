@@ -49,7 +49,7 @@ const ProductsPage = () => {
 
   const getProductsOfACategory = async (category: string) => {
     const res = await ProductsRepository.getProductsOfACategory(category);
-    return res.data;
+    return res;
   };
 
   const totalPage = totalProducts / limitNumber;

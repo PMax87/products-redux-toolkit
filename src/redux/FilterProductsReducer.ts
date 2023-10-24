@@ -8,10 +8,6 @@ export interface GetDataFromApi {
   total: number;
 }
 
-export interface CategoriesApiResponse {
-  data: string[];
-}
-
 export interface ProductsFilterState {
   products: Products[];
   categories: string[];
