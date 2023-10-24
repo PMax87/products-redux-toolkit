@@ -19,10 +19,11 @@ export class ProductsRepository {
     return axios.request(request);
   }
   static getProductsPerPage(
-    skip: number
+    skip: number,
+    limit: number
   ): Promise<AxiosRequestConfig<GetDataFromApi>> {
     const request: AxiosRequestConfig = {
-      url: `https://dummyjson.com/products?limit=10&skip=${skip}`,
+      url: `https://dummyjson.com/products?limit=${limit}&skip=${skip}`,
       method: "GET",
     };
     return axios.request(request);
